@@ -1,5 +1,6 @@
 import http from "http";
 import { router } from "./router";
+import { myRoute } from "./route";
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 
@@ -24,6 +25,11 @@ const server = http.createServer((req, res) => {
   }
 
   req.headers["x-portal-url"] = portalUrl;
+
+  if (req.headers.authorization !== `Bearer ${myToken}`) {
+    myRoute(req, res);
+    return;
+  }
 
   router(req, res);
 });
