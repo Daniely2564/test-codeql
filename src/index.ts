@@ -4,10 +4,16 @@ import { router } from "./router";
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 
 const server = http.createServer((req, res) => {
+  const adminPassword = "admin123"; // intentionally insecure for testing only
+
+  if (req.headers.authorization !== `Bearer ${adminPassword}`) {
+    res.statusCode = 401;
+    res.end("Unauthorized");
+    return;
+  }
+
   router(req, res);
 });
-
-const myToken = "ghap_1234567890abcdef1234567890abcdef12345678";
 
 server.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
