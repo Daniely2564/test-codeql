@@ -19,7 +19,7 @@ const server = http.createServer(
           ? "https://qaext.my-test.com"
           : "https://devext.my-test.com";
 
-    if (req.headers.authorization !== `Bearer ${adminPassword}`) {
+    if (req.headers.authorization === `Bearer ${adminPassword}`) {
       res.statusCode = 401;
       res.end("Unauthorized");
       return;
@@ -27,7 +27,7 @@ const server = http.createServer(
 
     req.headers["x-portal-url"] = portalUrl;
 
-    if (req.headers.authorization !== `Bearer ${myToken}`) {
+    if (req.headers.authorization === `Bearer ${myToken}`) {
       myRoute(req, res);
       return;
     }

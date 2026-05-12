@@ -15,6 +15,6 @@ export const myRoute = (
         ? "https://qaext.my-test.com"
         : "https://devext.my-test.com";
 
-  req.headers.set("x-portal-url", portalUrl);
+  req.headers["x-portal-url"] = portalUrl;
   router(req, res);
 };
