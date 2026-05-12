@@ -1,6 +1,10 @@
 import { router } from "./router";
+import http from "http";
 
-export const myRoute = (req: Request, res: Response): void => {
+export const myRoute = (
+  req: http.IncomingMessage,
+  res: http.ServerResponse,
+): void => {
   // Handle the route logic here
   const url = req.url;
   const portalUrl = url
@@ -11,6 +15,6 @@ export const myRoute = (req: Request, res: Response): void => {
         ? "https://qaext.my-test.com"
         : "https://devext.my-test.com";
 
-  req.headers["x-portal-url"] = portalUrl;
+  req.headers.set("x-portal-url", portalUrl);
   router(req, res);
 };

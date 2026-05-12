@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/Daniely2564/test-codeql#readme",
   "devDependencies": {
-    "@types/node": "^20.14.0",
+    "@types/node": "^20.19.41",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   }
